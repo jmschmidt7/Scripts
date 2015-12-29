@@ -7,7 +7,7 @@
 import urllib, json, arcpy
 
 userName = "YOUR_USERNAME"
-password = "YOUR_PASSWORD_URL_ENCODED"
+password = "YOUR_PASSWORD"
 ipAddress = "YOUR_IP_ADDRESS"
 arcpy.env.workspace = "YOUR_WORKSPACE"
 GIS_SERVER_URL = "YOUR_GIS_SERVER_URL"
@@ -15,7 +15,7 @@ LAYER_QUERY_URL = "YOUR_LAYER_QUERY_URL"
 output_name = "YOUR_OUTPUT_NAME"
 
 #Get the access token from the GIS server
-tokenURL = GIS_SERVER_URL + "tokens/generateToken?username=" + userName + "&password=" + password + "&f=json&ip=" + ipAddress
+tokenURL = GIS_SERVER_URL + "tokens/generateToken?username=" + userName + "&password=" + urllib.urlencode(password) + "&f=json&ip=" + ipAddress
 token_response = urllib.urlopen(tokenURL)
 token_data = json.loads(token_response.read())
 token = token_data['token']
