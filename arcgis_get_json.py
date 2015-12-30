@@ -20,6 +20,7 @@ token_response = urllib.urlopen(tokenURL)
 token_data = json.loads(token_response.read())
 token = token_data['token']
 
+#Get the json file from the arcgis server
 url = LAYER_QUERY_URL + "&token=" + token
 response = urllib.urlopen(url)
 data = json.loads(response.read())
